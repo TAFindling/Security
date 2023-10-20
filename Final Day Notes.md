@@ -19,7 +19,7 @@ REBUILD BOXES:
   REBUILD INSTANCE
   
 wiremask.eu Used to calculate offset for buffer overflows
-
+GTFOBINS Used to find exploitable su commands on Linux
 
 
 #NMAP SCRIPT COMMANDS
