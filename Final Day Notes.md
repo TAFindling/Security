@@ -18,6 +18,9 @@ REBUILD BOXES:
   PARTITIION: AUTOMATIC
   REBUILD INSTANCE
   
+wiremask.eu Used to calculate offset for buffer overflows
+
+
 
 #NMAP SCRIPT COMMANDS
   /usr/share/nmap/scripts
